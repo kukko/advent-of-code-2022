@@ -5,3 +5,8 @@ with open('input.txt') as f:
     if (line[0][0] <= line[1][0] and line[0][1] >= line[1][1]) or (line[0][0] >= line[1][0] and line[0][1] <= line[1][1]):
       count += 1
   print(count)
+  count = 0
+  for line in lines:
+    if (line[0][0] <= line[1][1] and line[0][1] >= line[1][0]) or (line[0][0] >= line[1][1] and line[0][1] <= line[1][0]):
+      count += 1
+  print(count)
