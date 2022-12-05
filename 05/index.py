@@ -12,10 +12,16 @@ with open('input.txt') as f:
         if stackIndex not in stacks.keys():
           stacks[stackIndex] = []
         stacks[stackIndex] = [box.strip('[]')] + stacks[stackIndex]
+  stacksCopy = stacks.copy()
   for movement in movements:
     stacks[movement[2]] = stacks[movement[2]] + stacks[movement[1]][:movement[0]*-1-1:-1]
     stacks[movement[1]] = stacks[movement[1]][0:movement[0]*-1]
+    stacksCopy[movement[2]] = stacksCopy[movement[2]] + stacksCopy[movement[1]][len(stacksCopy[movement[1]])-movement[0]:]
+    stacksCopy[movement[1]] = stacksCopy[movement[1]][0:movement[0]*-1]
   result = ''
+  copyResult = ''
   for i in sorted(stacks.keys()):
     result += stacks[i][-1]
+    copyResult += stacksCopy[i][-1]
   print(result)
+  print(copyResult)
